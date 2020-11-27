@@ -1,0 +1,53 @@
+{
+  "configuration": {
+    "status": "error",
+    "name": "Max",
+    "properties": {
+      "property": {
+        "name": "DefaultLogFileName",
+        "value": "${env:MAX_LOG_PATH:-max}"
+      }
+    },
+    "appenders": {
+      "Console": {
+        "name": "STDOUT",
+        "ThresholdFilter": {
+          "level": "error"
+        }
+      },
+      "RollingFile": {
+        "name": "myAppender",
+        "fileName": "${DefaultLogFileName}.log",
+        "filePattern": "${DefaultLogFileName}.%i.log",
+        "PatternLayout": {
+          "pattern": "%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"
+        },
+        "policies": {
+          "SizeBasedTriggeringPolicy": {
+            "size": "32 MB"
+          }
+        },
+        "DefaultRolloverStrategy": {
+          "fileIndex": "min",
+          "max": "2"
+        }
+      }
+    },
+    "loggers": {
+      "root": {
+        "level": "error",
+        "AppenderRef": {
+          "ref": "STDOUT"
+        }
+      },
+      "logger": {
+        "name": "myLogger",
+        "level": "trace",
+        "additivity": "false",
+        "AppenderRef": {
+          "ref": "myAppender"
+        }
+      }
+    }
+  }
+}

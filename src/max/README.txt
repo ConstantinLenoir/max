@@ -13,6 +13,11 @@ The Runtime class.
 The Java security managers can exert a great control over the JVM
 operations.
 
+Javadoc
+********
+
+package.html and overview.html
+
 
 A FINITE STATE MACHINE TO CONSTRUCT THE RESPONSE
 ==================================================
@@ -44,7 +49,13 @@ DoubleStream.max().
 The package java.util.function
 ********************************
 
-Functional interfaces provide target types for lambda expressions and method references. Each functional interface has a single abstract method, called the functional method for that functional interface, to which the lambda expression's parameter and return types are matched or adapted. Functional interfaces can provide a target type in multiple contexts, such as assignment context, method invocation, or cast context:
+Functional interfaces provide target types for lambda expressions and
+method references. Each functional interface has a single abstract
+method, called the functional method for that functional interface, to
+which the lambda expression's parameter and return types are matched
+or adapted. Functional interfaces can provide a target type in
+multiple contexts, such as assignment context, method invocation, or
+cast context:
 
 
      // Assignment context

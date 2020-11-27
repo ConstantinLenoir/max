@@ -1,7 +1,9 @@
 
 
-
-tests/outputs
+build
+docs
+maven/max/target
+*.log* # To handle rotating files.
 
 
 #########################################
@@ -29,8 +31,6 @@ tests/outputs
 .tags
 .cache/
 .vscode/
-
-build
 
 
 

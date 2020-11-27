@@ -2,7 +2,10 @@ package max;
 
 import java.util.ArrayList;
 import java.util.StringJoiner;
-    
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Max {
 
     private String[] args;
@@ -16,16 +19,34 @@ public class Max {
     // See also StringBuilder.
 
     private int currentIndex = 0;
+
+    // The default name is the name of the enclosing class.
+    private static final Logger logger = LogManager.getFormatterLogger("myLogger");
     
     public static void main(String [] args) {
 	// Non-static variables cannot directly be referenced from a
 	// static context.
+	// System.setProperty("log4j2.configurationFile", "")
 	Max maxProcess = new Max(args);
 	System.out.println(maxProcess.getResponse());
 	System.exit(0);
 	
     }
-
+    /**
+     * To construct an object exposing two elements: the
+     * maximum number found in {@code args} and a diagnostic message,
+     * the {@code response}.
+     *
+     * @param args {@code args} is a string containing a list of blank
+     * separated values which represent numbers. The allowed decimal
+     * separator is {@code .} (not {@code ,}). A future release could
+     * be more flexible about this convention which depends on the
+     * locale. {@code Max()} doesn't support all existing ways of
+     * formatting, encoding a number. This program is
+     * fault-tolerant. Faults are reported in the diagnostic message.
+     *
+     * 
+     */
     public Max(String[] args){
 	this.args = args;
 	argCount = args.length;
@@ -50,6 +71,7 @@ public class Max {
 	    }
 	}
 	catch(NumberFormatException e) {
+	    logger.trace("Fault: %1$s", args[currentIndex]);
 	    numberOfExceptions++;
 	    currentIndex++; // Fix: the item is skipped.
 	    runFaultTolerantProcess();
